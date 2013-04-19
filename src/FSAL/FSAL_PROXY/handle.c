@@ -985,7 +985,7 @@ static fsal_status_t
 pxy_make_object(struct fsal_export *export, fattr4 *obj_attributes,
                 const nfs_fh4 *fh, struct fsal_obj_handle **handle)
 {
-        struct attrlist attributes;
+        struct attrlist attributes = {0};
         struct pxy_obj_handle *pxy_hdl;
 
 	if(nfs4_Fattr_To_FSAL_attr(&attributes, obj_attributes,
@@ -1698,7 +1698,7 @@ pxy_getattrs(struct fsal_obj_handle *obj_hdl,
 {
         struct pxy_obj_handle *ph;
         fsal_status_t st;
-        struct attrlist obj_attr;
+        struct attrlist obj_attr = {0};
 
         if(!obj_hdl || !opctx)
                 return fsalstat(ERR_FSAL_FAULT, EINVAL);
@@ -2202,7 +2202,7 @@ pxy_create_handle(struct fsal_export *exp_hdl,
 {
         fsal_status_t st;
         nfs_fh4 fh4;
-        struct attrlist attr;
+        struct attrlist attr = {0};
         struct pxy_obj_handle *ph;
         struct pxy_handle_blob *blob;
 
